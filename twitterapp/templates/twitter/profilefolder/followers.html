@@ -1,0 +1,13 @@
+{% include 'base.html' %}
+{% include 'view_profile.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>twitter</title>
+</head>
+<body>
+{% for f in followers %}
+<p>{{f.username }}</p>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter</title>
+    <style>
+        body
+        {background-color:#e6ecf0;}
+        .searchresults
+        {
+       margin-left:590px;
+        width:250px;
+        background-color:white;
+        margin-top:50px;
+        position:absolute;
+        left: 75px;
+        top: 0px;
+        z-index: 2;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://abs.twimg.com/a/1532409277/css/t1/twitter_core.bundle.css" class="coreCSSBundles">
+    <link rel="stylesheet" class="moreCSSBundles" href="https://abs.twimg.com/a/1532409277/css/t1/twitter_more_1.bundle.css">
+    <link rel="stylesheet" class="moreCSSBundles" href="https://abs.twimg.com/a/1532409277/css/t1/twitter_more_2.bundle.css">
+    <link rel="dns-prefetch" href="https://pbs.twimg.com">
+    <link rel="dns-prefetch" href="https://t.co">
+    <link rel="preload" href="https://abs.twimg.com/k/en/init.en.51dab4fee56f4c2ebff7.js" as="script">
+    <link rel="preload" href="https://abs.twimg.com/k/en/0.commons.en.dc15f3fe298863985d75.js" as="script">
+      <meta name="robots" content="NOODP">
+      <meta name="description" content="Welcome back to Twitter. Sign in now to check your notifications, join the conversation and catch up on Tweets from the people you follow.">
+      <meta name="msapplication-TileImage" content="//abs.twimg.com/favicons/win8-tile-144.png"/>
+      <meta name="msapplication-TileColor" content="#00aced"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+</head>
+<body>
+    <div class="topbar js-topbar">
+    <div class="ProfilePage-editingOverlay"></div>
+
+
+    <div class="global-nav" data-section-term="top_nav">
+      <div class="global-nav-inner">
+        <div class="container">
+
+<h1 class="Icon Icon--bird bird-topbar-etched" style="display: inline-block; width: 24px; height: 21px;">
+  <span class="visuallyhidden">Twitter</span>
+</h1><div class="pushstate-spinner"></div>
+
+
+  <div role="navigation"><ul class="nav js-global-actions" id="global-actions">
+      <li id="global-nav-home">
+        <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="{% url 'home' %}" data-component-context="home_nav" data-nav="home" data-original-title="">
+          <span class="Icon Icon--home Icon--large"></span>
+          <span class="text" aria-hidden="true">Home</span>
+          <span class="u-hiddenVisually a11y-inactive-page-text">Home</span>
+        </a>
+      </li><li class="moments js-moments-tab " data-global-action="moments">
+        <a role="button" href="#" class="js-nav js-tooltip js-dynamic-tooltip">
+          <span class="Icon Icon--lightning Icon--large"></span>
+          <span class="Icon Icon--lightningFilled Icon--large u-textUserColor"></span>
+          <span class="text" aria-hidden="true">Moments</span>
+          <span class="u-hiddenVisually a11y-inactive-page-text">Moments</span>
+        </a>
+      </li><li class="people notifications" data-global-action="connect">
+        <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="#">
+          <span class="Icon Icon--notifications Icon--large"></span>
+          <span class="Icon Icon--notificationsFilled Icon--large u-textUserColor"></span>
+          <span class="text" aria-hidden="true">Notifications</span>
+          <span class="u-hiddenVisually a11y-inactive-page-text">Notifications</span>
+        </a>
+      </li><li class="dm-nav">
+        <a role="button" href="#" class="js-tooltip js-dynamic-tooltip global-dm-nav" data-placement="bottom">
+          <span class="Icon Icon--dm Icon--large"></span>
+          <span class="text">Messages</span>
+          <span class="dm-new"><span class="count-inner"></span></span>
+        </a>
+      </li></ul>
+  </div>
+
+  <div class="pull-right nav-extras">
+    <div>
+    <label class="visuallyhidden" for="txtbox">Search query</label>
+    <input oninput="search()" class="search-input" type="text" id="txtbox" placeholder="Search Twitter"/>
+</div>
+
+    <ul class="nav right-actions">
+      <li class="me dropdown session js-session" data-global-action="t1me" id="user-dropdown">
+          <a href="{% url 'viewprofile' user.id %}"><img class="Avatar Avatar--size32" src="{{ user.profile.profile_picture.url }}"></a>
+      </li>
+      <li role="complementary" aria-labelledby="global-new-tweet-button" class="topbar-tweet-btn">
+
+        <button  id="global-new-tweet-button" class="js-global-new-tweet js-tooltip EdgeButton EdgeButton--primary js-dynamic-tooltip" data-placement="bottom" data-component-context="new_tweet_button" data-original-title="">
+            <span  class="text"><a href="{% url 'logout' %}"><span style="color:white;">Logout</span> </a></span>
+        </button>
+
+      </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+<div>
+
+</div>
+<div class="outersearch" >
+<div class="searchresults" id="mysearch">
+
+</div>
+</div>
+</body>
+<script>
+    modal=document.getElementById("mysearch");
+   function search(){
+
+   var query=$('#txtbox').val();
+   if(query=="")
+    {
+    $('.searchresults').html("");
+    }
+    else
+    {
+    document.getElementById("mysearch").style.display = "block";
+    $.ajax(
+    {
+        type:"GET",
+        dataType:'json',
+        url: "/api/search/",
+        data:{
+                 query:query,
+
+        },
+        success: function( data )
+        {
+           var tab=$('<div />');
+          for(var i=0;i<data.length;i++)
+          {
+          tab.append('<p');
+           $('<a />', {value: data[i].username, text: data[i].username,href:"http://127.0.0.1:8000/viewprofile/"+data[i].id}).appendTo(tab);
+           tab.append('</p>');
+           }
+            $('.searchresults').html(tab);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          alert('error');
+      }
+     })
+     }
+    }
+     window.onclick = function(event) {
+    document.getElementById("mysearch").style.display = "none";
+    }
+</script>
+</html>

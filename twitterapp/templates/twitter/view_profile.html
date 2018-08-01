@@ -1,0 +1,314 @@
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>twitter</title>
+     <style>
+           .liked
+        {
+        color:#324b81;
+        }
+
+        .liked
+        {
+        color:red;
+        }
+        .displaycmnts
+        {
+        width:45%;
+        background:none;
+        border:none;
+        color:gray;
+          height:40px;
+        }
+        .tweet-card
+        {
+        margin-top:10px;
+        display: table;
+          margin-right: auto;
+         margin-left: auto;
+        padding:10px;
+         margin-bottom:10px;
+        text-align:center;
+        width: 500px;
+        background-color:white;
+        border-radius:5px
+        border: 2px solid lightgray;
+        }
+        body
+        {
+        background-color:#e6ecf0;
+        }
+        .likebutton
+        {
+        width:45%;
+         height:40px;
+         }
+        .cmtinput
+        {
+        width:90%;
+        }
+         .image-cropper {
+        float:left;
+        max-width: 40px;
+        max-height: 40px;
+        position: relative;
+        overflow: hidden;
+         border-radius: 50%;
+         margin-right:5px;
+         object-fit: cover;
+    }
+    </style>
+</head>
+<body>
+    <div class="ProfileCanopy ProfileCanopy--withNav js-variableHeightTopBar">
+  <div class="ProfileCanopy-inner">
+    <div class="ProfileCanopy-header u-bgUserColor" style="margin-top: 0px;">
+  <div class="AppContainer">
+
+    <div class="ProfileCanopy-avatar">
+      <div class="ProfileAvatar">
+    <a>
+      <img class="ProfileAvatar-image" src="{{user.profile.profile_picture.url}}">{{user.profile_picture}}
+    </a>
+</div>
+    </div>
+    </div>
+</div>
+
+    </div>
+  </div>
+    <div class="ProfileCanopy-navBar u-boxShadow">
+      <div class="ProfilePage-editingOverlay"></div>
+
+      <div class="AppContainer">
+        <div class="Grid Grid--withGutter">
+          <div class="Grid-cell u-size1of3 u-lg-size1of4">
+            <div class="ProfileCanopy-card" role="presentation" aria-hidden="true">
+              <div class="ProfileCardMini">
+  <a class="ProfileCardMini-avatar profile-picture js-tooltip" href="https://pbs.twimg.com/profile_images/781394805305638912/-Z_RbGMr.jpg" title="Pranitha Goud" data-resolved-url-large="https://pbs.twimg.com/profile_images/781394805305638912/-Z_RbGMr.jpg" data-url="https://pbs.twimg.com/profile_images/781394805305638912/-Z_RbGMr.jpg" target="_blank" rel="noopener" tabindex="-1">
+    <img class="ProfileCardMini-avatarImage" alt="Pranitha Goud" src="https://pbs.twimg.com/profile_images/781394805305638912/-Z_RbGMr_normal.jpg">
+  </a>
+  <div class="ProfileCardMini-details">
+    <div class="ProfileNameTruncated account-group">
+  <div class="u-textTruncate u-inlineBlock">
+    <a class="fullname ProfileNameTruncated-link u-textInheritColor js-nav" href="/pranithapranu4" data-aria-label-part="" tabindex="-1">
+      Pranitha Goud</a></div><span class="UserBadges"></span>
+</div>
+    <div class="ProfileCardMini-screenname">
+      <a href="/pranithapranu4" class="ProfileCardMini-screennameLink u-linkComplex js-nav u-dir" dir="ltr" tabindex="-1">
+        <span class="username u-dir" dir="ltr">@<b class="u-linkComplex-target">pranithapranu4</b></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+            </div>
+          </div>
+
+          <div class="Grid-cell u-size2of3 u-lg-size3of4">
+            <div class="ProfileCanopy-nav">
+
+  <div class="ProfileNav" role="navigation">
+    <ul class="ProfileNav-list">
+<li class="ProfileNav-item ProfileNav-item--tweets">
+          <a href="{% url 'viewprofile' user.id %}" class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav" tabindex="0">
+            <span class="ProfileNav-label">Tweets</span>
+              <span class="ProfileNav-value"> </span>
+          </a>
+        </li><li class="ProfileNav-item ProfileNav-item--following">
+        <a href="{% url 'following' %}" class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor">
+          <span class="ProfileNav-label">Following</span>
+          <span class="ProfileNav-value"> </span>
+        </a>
+      </li><li class="ProfileNav-item ProfileNav-item--followers">
+        <a href="{% url 'followers' %}" class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor">
+          <span class="ProfileNav-label">Followers</span>
+          <span class="ProfileNav-value"> </span>
+        </a>
+      </li><li class="ProfileNav-item ProfileNav-item--favorites">
+        <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor">
+          <span class="ProfileNav-label">Likes</span>
+          <span class="ProfileNav-value"> </span>
+        </a>
+      </li><li class="ProfileNav-item ProfileNav-item--lists">
+        <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor">
+          <span class="ProfileNav-label">Lists</span>
+          <span class="ProfileNav-value"> </span>
+        </a></li><li class="ProfileNav-item ProfileNav-item--moments">
+        <a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip js-nav u-textUserColor">
+          <span class="ProfileNav-label" aria-hidden="true">Moments</span>
+          <span class="ProfileNav-value" data-is-compact="false"> </span>
+        </a></li><li class="ProfileNav-item ProfileNav-item--more dropdown is-hidden" style=""><a class="ProfileNav-stat ProfileNav-stat--link ProfileNav-stat--moreLink js-dropdown-toggle" role="button" href="#more">
+          <span class="ProfileNav-label">&nbsp;</span>
+          <span class="ProfileNav-value">More <span class="ProfileNav-dropdownCaret Icon Icon--medium Icon--caretDown"></span></span>
+        </a>
+        <div class="dropdown-menu">
+          <div class="dropdown-caret">
+            <span class="caret-outer"></span>
+            <span class="caret-inner"></span>
+          </div>
+        </div>
+      </li><li class="ProfileNav-item ProfileNav-item--userActions u-floatRight u-textRight with-rightCaret ">
+        <div class="UserActions   u-textLeft">
+            {% if u == user.id %}
+            <span class="button-text">
+                <a href="{% url 'profile' user.id %}">
+                    <button type="button" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary">
+                    Edit Profile
+                    </button>
+                </a>
+            </span>
+            {% endif %}
+      <div class="ProfilePage-editingButtons">
+  <button class="ProfilePage-cancelButton EdgeButton EdgeButton--tertiary" data-scribe-element="cancel_button" tabindex="4">Cancel</button>
+  <span class="ProfilePage-savingIndicator"><span class="spinner-small"></span>Saving...</span>
+  <button class="ProfilePage-saveButton EdgeButton EdgeButton--secondary" tabindex="3">Save changes</button>
+</div>
+
+</div>
+
+      </li>
+    </ul>
+  </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<p>
+<p>Others</p>
+{% for p in people %}
+    {{ p.username }}
+    <button id="follow{{p.id}}" data-catid="{{p.id}}" class="follow">Follow </button>
+{% endfor %}
+
+ {% for t in tweets %}
+    <div class="tweet-card">
+         <div class="tweet-image">
+              <img class="image-cropper"  src="../{{ t.tweetuserprofile.profile_picture }}" />
+    </div>
+  <div align="left" style="align:left;">
+      <b>{{ t.tweetusername.username }}</b>
+  </div>
+  <div class="">
+    <h5 class=""></h5>
+
+    <p align="left">{{t.p}}</p>
+
+                <div class="likecmnts">
+                 {% if t.p.id in like %}
+                <button class="likebutton liked" content="liked" data-catid="{{t.p.id}}" id="liked{{t.p.id}}" ><span class="glyphicon glyphicon-heart"></span> <span class="likecnt{{t.p.id}}"> {{t.likecnt}}</span></button>
+                {% else %}
+               <button class="likebutton" content="like" data-catid="{{t.p.id}}" id="like{{t.p.id}}"><span class="glyphicon glyphicon-heart heart"></span> <span class="likecnt{{t.p.id}}"> {{t.likecnt}}</span></button>
+                {% endif %}
+                <button class="displaycmnts" data-catid="{{t.p.id}}"><span class="glyphicon glyphicon-comment"></span></button>
+                </div>
+
+                <div class="comment">
+                    <input class="cmtinput" placeholder=" Write a Comment..." data-catid="{{t.p.id}}" type="text" id="textbox{{t.p.id}}"/>
+                </div>
+                <br/><br/>
+                <p align="left" id="pcomment{{t.p.id}}"></p>
+                <div id="comments{{t.p.id}}" style="display:none;align:left;">
+                    {% for cmt in t.c %}
+                <p align="left">{{cmt.comment}}</p>
+                    {% endfor %}
+
+                </div>
+  </div>
+</div>
+
+{% endfor %}
+<script>
+     $('.displaycmnts').click(function(){
+    catid = $(this).attr("data-catid");
+    $('#comments'+catid).toggle();
+    });
+  $('.cmtinput').keypress(function(ev){
+    if(ev.key==="Enter")
+    {
+
+    catid = $(this).attr("data-catid");
+    var txtbox=$('#textbox'+catid).val();
+    document.getElementById('textbox'+catid).value = "";
+    $('#pcomment'+catid).append("<p>"+txtbox+"</p>");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/addcomment",
+        data:{
+                 post_id: catid,
+                 comment: txtbox,
+        },
+        success: function( data )
+        {
+
+        }
+     })
+     }
+    });
+    function tweet()
+   {
+   var text = document.getElementById("tweet").value;
+    $.ajax(
+    {
+        type:"GET",
+        url: "/addtweet/",
+        data:{
+                 text: text,
+        },
+        success: function( data )
+        {
+            location.reload;
+            document.getElementById("tweet").value="";
+
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          alert("error");
+      }
+     })
+    }
+ $('.likebutton').click(function(){
+    var catid,data1="aa";
+    $(this).toggleClass('liked');
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/likepost/",
+        data:{
+                 post_id: catid,
+        },
+        success: function( data )
+        {
+          document.getElementsByClassName('likecnt'+catid)[0].innerHTML=data;
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          alert(error);
+      }
+     })
+    });
+    $('.follow').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/follow",
+        data:{
+                 friend_id: catid
+        },
+        success: function( data )
+        {
+            $( '#follow'+ catid ).text("following");
+        }
+     })
+});
+</script>
+
+</body>
+
+</html>

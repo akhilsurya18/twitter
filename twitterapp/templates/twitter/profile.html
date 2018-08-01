@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>twitter</title>
+</head>
+<body>
+<br/><br/><br/><br/>
+<div class="signin-wrapper">
+    <h1>Update Profile</h1>
+    <form class="t1-form clearfix signin js-signin" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+         {{ form.as_p }}
+        <input type="submit" value="update"/>
+    </form>
+</div>
+</body>
+
+</html>

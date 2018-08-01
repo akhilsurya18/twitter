@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://abs.twimg.com/a/1531883619/css/t1/twitter_core.bundle.css" class="coreCSSBundles">
+    <link rel="stylesheet" class="moreCSSBundles" href="https://abs.twimg.com/a/1531883619/css/t1/twitter_more_1.bundle.css">
+    <link rel="stylesheet" class="moreCSSBundles" href="https://abs.twimg.com/a/1531883619/css/t1/twitter_more_2.bundle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="row" style="width:100%;height:100%">
+    <div class="col-md-6">
+        <img src="{% static 'twit.png' %}" alt="" style="width:100%;height:100%" />
+    </div>
+    <div class="col-md-6">
+        <div class="StaticLoggedOutHomePage-cell StaticLoggedOutHomePage-utilityBlock">
+      <div class="StaticLoggedOutHomePage-login">
+<form action="https://twitter.com/sessions" class="LoginForm js-front-signin" method="post" data-component="login_callout" data-element="form">
+  <div class="LoginForm-input LoginForm-username">
+    <input type="text" class="text-input email-input js-signin-email" name="session[username_or_email]" autocomplete="username" placeholder="Phone, email, or username">
+  </div>
+
+  <div class="LoginForm-input LoginForm-password">
+    <input type="password" class="text-input" name="session[password]" placeholder="Password" autocomplete="current-password">
+                <div class="LoginForm-staticForgot">
+              <a class="forgot" href="/account/begin_password_reset" rel="noopener">Forgot password?</a>
+            </div>
+
+  </div>
+
+
+  <input type="submit" class="EdgeButton EdgeButton--secondary EdgeButton--medium submit js-submit" value="Log in">
+
+    <input type="hidden" name="return_to_ssl" value="true">
+
+  <input type="hidden" name="scribe_log">
+  <input type="hidden" name="redirect_after_login" value="/?prefetchTimestamp=1532452973264">
+  <input type="hidden" value="b23120eed326dd5890a1a61cafa32b5cabcd5efd" name="authenticity_token">
+      <input type="hidden" name="ui_metrics" autocomplete="off" value="{&quot;rf&quot;:{&quot;ba3f0a95d035c0c5d42298e701a6272a596d254041e3dec6a8372b4073444f32&quot;:-1,&quot;a3567970f91c0a6bcab5b9b45c5a7c9afb252734da94ee1c8be67071f641c982&quot;:0,&quot;f47b71e7155d7523a58583307571ce67f8fcf39c5952d025f481b55ff777174b&quot;:0,&quot;fc59067001336740bc31be4d07e19fc4cfc871fd63a050193ebff2a73d276d3a&quot;:30},&quot;s&quot;:&quot;dhXb7F2bD9Dt5ZYPGPq71xrKTY-WiNtnpEqVBU8TohQcqWTD9LanOyIJnh35LNZWb4z6mM6KyUJ1IpffGqPa1MdednenCKY0o1PeNtxwHMYGmug_8Q3l2DzupStyzmwEBJ8sUlRrE03TD6nE9nm1GLS1jWQO6vx5o18MI5jcohuolT9bnPm_nmEvX-xwt1tYzCNYKzKJ8E5BIYMKwQPkBmH3oo2FmZQVxS4s29d7dwQ-fnksUKac3XtaFLoPxX9FKxUo2YYiGG4o1i8d6ipebrtVHYplsdi3FSXg2qUZhxs3MdbqR9pz8l8ksWJoYMZmJwEF88Z5XC3QDCd92Pg41wAAAWTNZwdX&quot;}">
+      <script src="/i/js_inst?c_name=ui_metrics" async=""></script>
+</form>
+      </div>
+      <div class="StaticLoggedOutHomePage-signupBlock">
+        <div class="StaticLoggedOutHomePage-signupHeader">
+          <span class="Icon Icon--bird"></span>
+          <a class="StaticLoggedOutHomePage-input StaticLoggedOutHomePage-narrowLoginButton EdgeButton EdgeButton--secondary EdgeButton--small u-floatRight" href="/login">
+            Log in
+          </a>
+        </div>
+        <h1 class="StaticLoggedOutHomePage-signupTitle">See what’s happening in the world right now</h1>
+          <div class="StaticLoggedOutHomePage-noSignupForm">
+            <h2 class="StaticLoggedOutHomePage-signupSubtitle">Join Twitter today.</h2>
+            <div class="StaticLoggedOutHomePage-buttons">
+              <a class="js-nav EdgeButton EdgeButton--medium EdgeButton--primary StaticLoggedOutHomePage-buttonSignup" href="/register/">
+                Sign Up
+              </a>
+              <a class="js-nav EdgeButton EdgeButton--medium EdgeButton--secondary StaticLoggedOutHomePage-buttonLogin" href="/login/">
+                Log in
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+</body>
+</html>

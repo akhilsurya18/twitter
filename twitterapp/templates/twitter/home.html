@@ -1,0 +1,176 @@
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>twitter</title>
+    <style>
+        .liked
+        {
+        color:red;
+        }
+        .displaycmnts
+        {
+        width:45%;
+        background:none;
+        border:none;
+        color:gray;
+          height:40px;
+        }
+        .tweet-card
+        {
+        margin-top:10px;
+        display: table;
+          margin-right: auto;
+         margin-left: auto;
+        padding:10px;
+         margin-bottom:10px;
+        text-align:center;
+        width: 500px;
+        background-color:white;
+        border-radius:5px
+        border: 2px solid lightgray;
+        }
+        body
+        {
+        background-color:#e6ecf0;
+        }
+        .likebutton
+        {
+        width:45%;
+         height:40px;
+         }
+        .cmtinput
+        {
+        width:90%;
+        }
+         .image-cropper {
+        float:left;
+        max-width: 40px;
+        max-height: 40px;
+        position: relative;
+        overflow: hidden;
+         border-radius: 50%;
+         margin-right:5px;
+         object-fit: cover;
+    }
+    </style>
+</head>
+<body>
+    <br/>
+    <br/>
+    <div class="tweet-card" >
+        <textarea style="height:100px; width:450px;" id="tweet" rows="5" cols="1000">
+        </textarea>
+          <button  onclick="tweet()" id="global-new-tweet-button" class="js-global-new-tweet js-tooltip EdgeButton EdgeButton--primary js-dynamic-tooltip" data-placement="bottom" data-component-context="new_tweet_button" data-original-title="">
+          <span class="text">Tweet</span>
+        </button>
+
+    </div>
+    {% for t in tweets %}
+
+    <div class="tweet-card">
+         <div class="tweet-image">
+              <img class="image-cropper"  src="../{{ t.tweetuserprofile.profile_picture }}" />
+    </div>
+  <div align="left" style="align:left;">
+      <b>{{ t.tweetusername.username }}</b>
+  </div>
+  <div class="">
+    <h5 class=""></h5>
+
+    <p align="left">{{t.p}}</p>
+
+                <div class="likecmnts">
+                 {% if t.p.id in like %}
+                <button class="likebutton liked" content="liked" data-catid="{{t.p.id}}" id="liked{{t.p.id}}" ><span class="glyphicon glyphicon-heart"></span> <span class="likecnt{{t.p.id}}"> {{t.likecnt}}</span></button>
+                {% else %}
+               <button class="likebutton" content="like" data-catid="{{t.p.id}}" id="like{{t.p.id}}"><span class="glyphicon glyphicon-heart heart"></span> <span class="likecnt{{t.p.id}}"> {{t.likecnt}}</span></button>
+                {% endif %}
+                <button class="displaycmnts" data-catid="{{t.p.id}}"><span class="glyphicon glyphicon-comment"></span></button>
+                </div>
+
+                <div class="comment" >
+                    <input class="cmtinput" placeholder=" Write a Comment..." data-catid="{{t.p.id}}" type="text" id="textbox{{t.p.id}}"/>
+                </div>
+
+                <p id="pcomment{{t.p.id}}"></p>
+                <div id="comments{{t.p.id}}" style="display:none;margin-left:40px;">
+                    {% for cmt in t.c %}
+                <p align="left">{{cmt.comment}}</p>
+                    {% endfor %}
+
+                </div>
+  </div>
+</div>
+{% endfor %}
+</body>
+<script>
+     $('.displaycmnts').click(function(){
+    catid = $(this).attr("data-catid");
+    $('#comments'+catid).toggle();
+    });
+  $('.cmtinput').keypress(function(ev){
+    if(ev.key==="Enter")
+    {
+
+    catid = $(this).attr("data-catid");
+    var txtbox=$('#textbox'+catid).val();
+    document.getElementById('textbox'+catid).value = "";
+    $('#pcomment'+catid).append("<p>"+txtbox+"</p>");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/addcomment",
+        data:{
+                 post_id: catid,
+                 comment: txtbox,
+        },
+        success: function( data )
+        {
+
+        }
+     })
+     }
+    });
+    function tweet()
+   {
+   var text = document.getElementById("tweet").value;
+    $.ajax(
+    {
+        type:"GET",
+        url: "/addtweet/",
+        data:{
+                 text: text,
+        },
+        success: function( data )
+        {
+            setInterval(function(){ location.reload(); }, 0);
+            document.getElementById("tweet").value="";
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          alert("error");
+      }
+     })
+    }
+ $('.likebutton').click(function(){
+    var catid,data1="aa";
+    $(this).toggleClass('liked');
+    catid = $(this).attr("data-catid");
+    $.ajax(
+    {
+        type:"GET",
+        url: "/likepost/",
+        data:{
+                 post_id: catid,
+        },
+        success: function( data )
+        {
+          document.getElementsByClassName('likecnt'+catid)[0].innerHTML=data;
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          alert(error);
+      }
+     })
+    });
+</script>
+</html>
