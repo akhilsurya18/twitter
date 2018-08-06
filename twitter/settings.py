@@ -28,7 +28,7 @@ SECRET_KEY = '$9-v)@c#^y$hh8c9h_()2)z8qn)h0&3w@1*aa1$hqa+mml7hgn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','https://mighty-sands-13269.herokuapp.com/','https://powerful-citadel-17852.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'https://glacial-mesa-82697.herokuapp.com/']
 
 LOGIN_REDIRECT_URL ='/home/'
 LOGOUT_REDIRECT_URL ='/login/'
