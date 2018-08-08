@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
-import dj_database_url
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +26,7 @@ SECRET_KEY = '$9-v)@c#^y$hh8c9h_()2)z8qn)h0&3w@1*aa1$hqa+mml7hgn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://glacial-mesa-82697.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 LOGIN_REDIRECT_URL ='/home/'
 LOGOUT_REDIRECT_URL ='/login/'
@@ -90,8 +88,7 @@ DATABASES = {
         'PASSWORD': "mysqlpassword1",
     }
 }
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -128,9 +125,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-                os.path.join(BASE_DIR, "static"),
-            ]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    os.path.join(BASE_DIR, "static"),
+]
