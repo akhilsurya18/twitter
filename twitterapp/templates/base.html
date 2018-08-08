@@ -137,7 +137,7 @@
           for(var i=0;i<data.length;i++)
           {
           tab.append('<p');
-           $('<a />', {value: data[i].username, text: data[i].username,href:"https://mighty-sands-13269.herokuapp.com/"+data[i].id}).appendTo(tab);
+           $('<a />', {value: data[i].username, text: data[i].username,href:"http://127.0.0.1:8000/viewprofile/"+data[i].id}).appendTo(tab);
            tab.append('</p>');
            }
             $('.searchresults').html(tab);
